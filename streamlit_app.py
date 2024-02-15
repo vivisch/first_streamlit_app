@@ -25,4 +25,4 @@ streamlit.header("Fruityvice Fruit Advice!")
 fruityvise_response = requests.get('https://fruityvice.com/api/fruit/watermelon')
 fruityvise_normalized = pd.json_normalize(fruityvise_response.json())
 
-streamlit.dataframe(fruityvise_normalized)
+streamlit.dataframe(fruityvise_normalized.set_index('id'))
