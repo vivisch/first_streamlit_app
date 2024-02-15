@@ -22,10 +22,10 @@ streamlit.dataframe(fruits_to_show)
 
 streamlit.header("Fruityvice Fruit Advice!")
 
-fruit_choice = streamlit.text_input('What fruit would you like information about?') if '' else 'apple'
+fruit_choice = streamlit.text_input('What fruit would you like information about?') 
 streamlit.write('The user entered' + fruit_choice)
 
-fruityvise_response = requests.get('https://fruityvice.com/api/fruit/' + fruit_choice)
+fruityvise_response = requests.get('https://fruityvice.com/api/fruit/' + (fruit_choice if fruit_choice != '' else 'apple'))
 fruityvise_normalized = pd.json_normalize(fruityvise_response.json())
 
 streamlit.dataframe(fruityvise_normalized.set_index('id'))
